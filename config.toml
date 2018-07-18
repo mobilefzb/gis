@@ -1,8 +1,8 @@
 [listen]
 # 监听上传 server
-upload="127.0.0.1:8087"
+upload="0.0.0.0:8087"
 # 监听下载 server
-download="127.0.0.1:8088"
+download="0.0.0.0:8088"
 
 [log.console]
 level="debug"
@@ -16,32 +16,30 @@ maxSize=1048576
 maxLine=1000000
 dateSlice="d"
 jsonFormat=true
-    [log.file.levelFilename]
-    error="log/gis_error.log"
+[log.file.levelFilename]
+error="log/gis_error.log"
 
 [upload]
 # 表单提交字段
 form_field="upload"
 # 允许上传的图片格式
-allow_type = [".jpg", ".jpeg", ".png"]
+allow_type = [".jpg", ".jpeg", ".png", ".gif", ".bmp", ".tiff", ".pcx", ".tag"]
 # 图片的大小 KB
-max_size = 2048
+max_size = 102400
 # 图片上传根目录
 root_dir = "upload"
 # 图片保存文件名字符串长度
 filename_len = 16
 # 目录树的目录名长度
-dirname_len = 4
+dirname_len = 16
 # 缩略图尺寸 width_height
-thumbnails = ["200_200", "300_300", "200_400"]
+thumbnails = ["200_200"]
 
 [download]
 # 下载的地址 协议://域名:端口
-uri = "http://test.com:8088"
+uri = "http://gis:8088"
 
 # appname 用于授权,可多个
 [appname]
-    [appname.test]
-    app_key = "ad%4a*a&ada@#ada"
-    [appname.test1]
-    app_key = "sd(4a*yu&dai#9d3"
+[appname.cmop]
+app_key = "ad%4a*a&ada@#ada"

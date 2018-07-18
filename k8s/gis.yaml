@@ -1,0 +1,38 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: gis
+  namespace: default
+  labels:
+    k8s-app: gis
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      k8s-app: gis
+  template:
+    metadata:
+      labels:
+        k8s-app: gis
+    spec:
+      volumes:
+      - name: tz-config
+        hostPath:
+          path: /etc/localtime
+      - name: media-upload
+        glusterfs:
+          endpoints: glusterfs-cluster
+          path: gis
+          readOnly: false
+      containers:
+      - name: gis
+        image: cmop-registry:30000/gis
+        imagePullPolicy: IfNotPresent
+        ports:
+        - containerPort: 8087
+        - containerPort: 8088
+        volumeMounts:
+          - name: tz-config
+            mountPath: /etc/localtime
+          - name: media-upload
+            mountPath: /usr/local/app/upload

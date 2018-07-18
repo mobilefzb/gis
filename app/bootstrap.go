@@ -16,9 +16,9 @@ var (
 var (
 	Version = "v0.2"
 
-	author = "phachon"
+	author = "fuzhibo"
 
-	address = "https://github.com/phachon/gis"
+	address = "https://github.com/mobilefzb/gis"
 
 	RootPath = ""
 
